@@ -2,7 +2,7 @@
 Front End developer Coding Challenge using GIPHY
 
 # Instructions 
-1.  git clone https://github.com/chini5ko/babbel_coding_challenge.git
+1.  git clone https://github.com/chini5ko/Marvel_Challenge.git
 2.  cd calculator-app
 3.  npm install 
 4.  npm start 

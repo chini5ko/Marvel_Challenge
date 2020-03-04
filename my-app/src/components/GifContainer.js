@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
 
-
 class GifContainer extends Component {
 
     constructor(props) {
@@ -9,8 +8,6 @@ class GifContainer extends Component {
         //hardcoded 
         super(props);
         this.state = {
-            urlImage: null,
-            requestJson: null,
             trendingGifs: null,
             searchGifs: null,
         };
@@ -18,7 +15,8 @@ class GifContainer extends Component {
 
     // AJAX call for trending 
     componentDidMount() {
-        var url_giphy_trending = 'https://api.giphy.com/v1/gifs/trending?api_key=Erd7FLQSsRKYF24NdrQl54yQEJ1MOuEv&limit=12&rating=G';
+        let numberOfSearch = 10;
+        var url_giphy_trending = 'https://api.giphy.com/v1/gifs/trending?api_key=Erd7FLQSsRKYF24NdrQl54yQEJ1MOuEv&limit=' +numberOfSearch+'&rating=G';
         this.rederImgElement(url_giphy_trending,'trending');
     }
 
@@ -62,12 +60,12 @@ class GifContainer extends Component {
     }
 
     renderSearch(){
-        var url_giphy_search = 'https://api.giphy.com/v1/gifs/search?api_key=Erd7FLQSsRKYF24NdrQl54yQEJ1MOuEv&q=' + this.props.searchValue+'&limit=25&offset=0&rating=G&lang=en';
+        let numberOfSearch = 10;
+        var url_giphy_search = 'https://api.giphy.com/v1/gifs/search?api_key=Erd7FLQSsRKYF24NdrQl54yQEJ1MOuEv&q=' + this.props.searchValue+'&limit='+numberOfSearch+'&offset=0&rating=G&lang=en';
         this.rederImgElement( url_giphy_search , 'search');
     }
 
     render() {
-
         return (
             <div>
                 {this.props.search ? this.renderSearch()  : console.log("no search")}

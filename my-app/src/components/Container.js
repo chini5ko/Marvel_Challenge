@@ -9,10 +9,21 @@ class Container extends Component {
           //hardcoded 
           super(props);
           this.state = {
-            didUserSearch: true, 
+            didUserSearch: false, 
+            searchValue:'',
             urlImage: null,
             requestJson: null
           };
+        }
+
+        handleSearch = (event) => {
+            //console.log('search: ', event.target.value);
+            if(event.key === 'Enter'){
+                this.setState({
+                    didUserSearch:true,
+                    searchValue:event.target.value
+                })
+            }
         }
 
 
@@ -24,11 +35,12 @@ class Container extends Component {
                 <input
                 type="text"
                 placeholder="Search"
+                onKeyPress={this.handleSearch}
                 />
                 
                 
                 {/* <img src={this.state.urlImage} height='200px' alt='gif' ></img> */}
-                <GifContainer search={this.state.didUserSearch} urlImage={this.state.urlImage} giftJson={this.state.requestJson} />
+                <GifContainer search={this.state.didUserSearch} searchValue={this.state.searchValue} />
       
 
             </div>

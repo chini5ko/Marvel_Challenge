@@ -3,7 +3,7 @@ import $ from 'jquery'
 import GifContainer from './GifContainer'
 import style from './containerStyles.module.css'
 import searchIcon from '../svg/marvelSearchIcon.svg'
-import hoveredSearchIcon  from '../svg/marvelSearchIconHover.svg'
+import hoveredSearchIcon from '../svg/marvelSearchIconHover.svg'
 
 class Container extends Component {
 
@@ -15,8 +15,9 @@ class Container extends Component {
             didUserSearch: false,
             searchValue: '',
             urlImage: null,
-            requestJson: null, 
-            hoverSearch: false
+            requestJson: null,
+            hoverSearch: false,
+            searchCurrentValue: ""
         };
     }
 
@@ -28,23 +29,33 @@ class Container extends Component {
                 searchValue: event.target.value
             })
         }
+
+        this.setState({
+            searchCurrentValue: event.target.value
+        })
+
+        
     }
 
-    searchIconHovered=()=>{
+    searchIconHovered = () => {
         this.setState({
-            hoverSearch:true
+            hoverSearch: true
         })
     }
 
-    searchIconNotHovered=()=>{
+    searchIconNotHovered = () => {
         this.setState({
-            hoverSearch:false
+            hoverSearch: false
         })
     }
 
-    
+    clickedSearchIcon = () =>{
+        this.setState({
+            didUserSearch: true,
+            searchValue: this.state.searchCurrentValue
+        })
+    }
 
- 
 
     render() {
         return (
@@ -54,20 +65,19 @@ class Container extends Component {
                     <div className={style.searchBarContainer}>
                         <input type="text" placeholder="Search" onKeyPress={this.handleSearch} className={style.searchBar} />
 
-                        {/* <div onMouseOver={this.searchIconHovered} >
-                        <img  src={searchIcon} className={style.searchICon}  alt="marvel-search-icon"></img>
-                        </div> */}
-                        <div onMouseOver={this.searchIconHovered}  onMouseOut={this.searchIconNotHovered} > 
-                        {this.state.hoverSearch ?
-                         <img  src={hoveredSearchIcon} className={style.searchICon}  alt="marvel-search-icon"></img> :
-                         <img  src={searchIcon} className={style.searchICon}  alt="marvel-search-icon"></img> }  
+                        <div onMouseOver={this.searchIconHovered} onMouseOut={this.searchIconNotHovered} onClick={this.clickedSearchIcon}  >
+                            {this.state.hoverSearch ?
+                                <img src={hoveredSearchIcon} className={style.searchICon} alt="marvel-search-icon"></img> :
+                                <img src={searchIcon} className={style.searchICon} alt="marvel-search-icon"></img>}
                         </div>
-
 
                     </div>
 
                     {/* <img src={this.state.urlImage} height='200px' alt='gif' ></img> */}
-                    <GifContainer search={this.state.didUserSearch} searchValue={this.state.searchValue} />
+                    <div className={style.gifDisplayContainer}> 
+                    <GifContainer  search={this.state.didUserSearch} searchValue={this.state.searchValue} />
+
+                    </div>
 
                 </div>
 

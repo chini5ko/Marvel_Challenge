@@ -15,7 +15,7 @@ class GifContainer extends Component {
 
     // AJAX call for trending 
     componentDidMount() {
-        let numberOfSearch = 10;
+        let numberOfSearch = 20;
         var url_giphy_trending = 'https://api.giphy.com/v1/gifs/trending?api_key=Erd7FLQSsRKYF24NdrQl54yQEJ1MOuEv&limit=' +numberOfSearch+'&rating=G';
         this.rederImgElement(url_giphy_trending,'trending');
     }
@@ -60,7 +60,7 @@ class GifContainer extends Component {
     }
 
     renderSearch(){
-        let numberOfSearch = 10;
+        let numberOfSearch = 20;
         var url_giphy_search = 'https://api.giphy.com/v1/gifs/search?api_key=Erd7FLQSsRKYF24NdrQl54yQEJ1MOuEv&q=' + this.props.searchValue+'&limit='+numberOfSearch+'&offset=0&rating=G&lang=en';
         this.rederImgElement( url_giphy_search , 'search');
     }

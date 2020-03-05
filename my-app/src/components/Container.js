@@ -13,28 +13,27 @@ class Container extends Component {
         super(props);
         this.state = {
             didUserSearch: false,
-            searchValue: '',
             urlImage: null,
             requestJson: null,
             hoverSearch: false,
-            searchCurrentValue: ""
+            searchCurrentValue: "",
+            emptyWarningDisplayed: false
         };
+        
+        this.gifContainerEl =  React.createRef();
     }
 
-    handleSearch = (event) => {
-        //console.log('search: ', event.target.value);
-        if (event.key === 'Enter') {
-            this.setState({
-                didUserSearch: true,
-                searchValue: event.target.value
-            })
-        }
+    handleKeyPress = (event) => {
 
         this.setState({
-            searchCurrentValue: event.target.value
+            searchCurrentValue: event.target.value,
+            didUserSearch: false,
+            emptyWarningDisplayed:false
         })
 
-        
+        if (event.key === 'Enter') {
+            this.performSearch();
+        }
     }
 
     searchIconHovered = () => {
@@ -49,11 +48,21 @@ class Container extends Component {
         })
     }
 
-    clickedSearchIcon = () =>{
-        this.setState({
-            didUserSearch: true,
-            searchValue: this.state.searchCurrentValue
-        })
+    performSearch = () => {
+        this.gifContainerEl.current.renderSearch(); 
+
+        if(!this.state.didFirstSearchOcurred){
+            this.setState({emptyWarningDisplayed:true})
+        }
+    }
+
+    displayEmptyWarning(){
+        if(this.state.emptyWarningDisplayed && this.state.searchCurrentValue.length==0 ){
+            return <h6 className={style.warning}>Search field is empty. Default value for empty search is Marvel</h6>
+        }
+        else{
+            return null;
+        }
     }
 
 
@@ -63,26 +72,25 @@ class Container extends Component {
 
                 <div className={style.containerWrap}>
                     <div className={style.searchBarContainer}>
-                        <input type="text" placeholder="Search" onKeyPress={this.handleSearch} className={style.searchBar} />
 
-                        <div onMouseOver={this.searchIconHovered} onMouseOut={this.searchIconNotHovered} onClick={this.clickedSearchIcon}  >
+                        <input type="text" placeholder="Search" onKeyUp={this.handleKeyPress} className={style.searchBar} />
+
+                        <div onClick={this.performSearch} onMouseOver={this.searchIconHovered} onMouseOut={this.searchIconNotHovered} >
                             {this.state.hoverSearch ?
                                 <img src={hoveredSearchIcon} className={style.searchICon} alt="marvel-search-icon"></img> :
                                 <img src={searchIcon} className={style.searchICon} alt="marvel-search-icon"></img>}
                         </div>
-
+                        {null}
+                        <div>{this.displayEmptyWarning()}</div>
+                        {/* <h6>Search field is empty. Default value for empty search is Marvel</h6> */}
                     </div>
 
-                    {/* <img src={this.state.urlImage} height='200px' alt='gif' ></img> */}
-                    <div className={style.gifDisplayContainer}> 
-                    <GifContainer  search={this.state.didUserSearch} searchValue={this.state.searchValue} />
-
+                    <div className={style.gifDisplayContainer}>
+                        <GifContainer ref={this.gifContainerEl} didUserSearch={this.state.didUserSearch} searchValue={this.state.searchCurrentValue} />
+                                
                     </div>
 
                 </div>
-
-
-
             </div>
         )
     }

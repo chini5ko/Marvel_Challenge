@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
+import style from './gifContainerStyle.module.css'
 
 class GifContainer extends Component {
-
     constructor(props) {
 
         //hardcoded 
@@ -10,17 +10,16 @@ class GifContainer extends Component {
         this.state = {
             trendingGifs: null,
             searchGifs: null,
+            didUserSearch: props.didUserSearch
         };
     }
 
     // AJAX call for trending 
     componentDidMount() {
-        let numberOfSearch = 20;
-        var url_giphy_trending = 'https://api.giphy.com/v1/gifs/trending?api_key=Erd7FLQSsRKYF24NdrQl54yQEJ1MOuEv&limit=' +numberOfSearch+'&rating=G';
-        this.rederImgElement(url_giphy_trending,'trending');
+        this.renderTrending();
     }
 
-    rederImgElement(url_giphy_request, type) {
+    renderImgElement(url_giphy_request, type) {
         var items = []
         $.ajax({
             type: "GET",
@@ -28,7 +27,7 @@ class GifContainer extends Component {
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function (giphyJson) {
-
+                console.log("ajax! type: " + type)
                 var data = giphyJson['data'];
 
                 for (const d of data.entries()) {
@@ -38,10 +37,9 @@ class GifContainer extends Component {
                     let downsized = images['downsized'];
                     let downsizedURL = downsized['url'];
 
-                    //console.log( index + " ",  downsizedURL);
-
                     items.push(<img key={index} src={downsizedURL} height='200px' alt='gif' ></img>)
                 }
+
                 if(type=='trending'){
                     this.setState({ trendingGifs: items })
                 }
@@ -57,19 +55,34 @@ class GifContainer extends Component {
                 console.log(error)
             }
         });
+    
     }
 
     renderSearch(){
         let numberOfSearch = 20;
-        var url_giphy_search = 'https://api.giphy.com/v1/gifs/search?api_key=Erd7FLQSsRKYF24NdrQl54yQEJ1MOuEv&q=' + this.props.searchValue+'&limit='+numberOfSearch+'&offset=0&rating=G&lang=en';
-        this.rederImgElement( url_giphy_search , 'search');
+        console.log("this.props.searchValue.length val" , this.props.searchValue.length);
+        //let searchText =  this.props.searchValue;
+        let searchText = (this.props.searchValue.length>0) ? this.props.searchValue : 'Marvel';
+        var url_giphy_search = 'https://api.giphy.com/v1/gifs/search?api_key=Erd7FLQSsRKYF24NdrQl54yQEJ1MOuEv&q=' + searchText+'&limit='+numberOfSearch+'&offset=0&rating=G&lang=en';
+        
+        this.renderImgElement( url_giphy_search , 'search');
+        this.setState({ didUserSearch: true })
+
+    }
+
+    renderTrending(){
+        let numberOfSearch = 20;
+        var url_giphy_trending = 'https://api.giphy.com/v1/gifs/trending?api_key=Erd7FLQSsRKYF24NdrQl54yQEJ1MOuEv&limit=' +numberOfSearch+'&rating=G';
+        this.renderImgElement( url_giphy_trending , 'trending');
     }
 
     render() {
         return (
             <div>
-                {this.props.search ? this.renderSearch()  : console.log("no search")}
-                {this.props.search ? this.state.searchGifs  : this.state.trendingGifs}
+                <div className={style.giftDisplayContainer}>
+                    {this.state.didUserSearch ? this.state.searchGifs  : this.state.trendingGifs}
+                </div>
+         
             </div>
         )
     }

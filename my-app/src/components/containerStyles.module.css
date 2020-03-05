@@ -21,14 +21,14 @@
 .gifDisplayContainer{
     background: #000 ;
     overflow: auto;
-    /* border-left: #ed1d24 1px solid;
-    border-right: #ed1d24 1px solid; */
     padding: 1em;
-  
     scrollbar-color: #ffffff #ed1d24;
-
-
+    text-align: center;
     
+}
+
+.warning{
+    color: red;
 }
 
 .searchBar{

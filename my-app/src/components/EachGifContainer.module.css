@@ -3,8 +3,21 @@
     margin: .5em;
 }
 
+h6{
+    color: #ed1d24;
+    font-size: 20em;
+}
+
 .gifInteraction:hover{
     box-shadow: 0 0 20px 0 #ed1d24, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+}
+
+.unfocus{
+    filter: grayscale(100%);
+}
+
+.color{
+    filter: grayscale(100%);
 }
 
 .cursor{
@@ -26,7 +39,7 @@
 
 }
 
-@media (max-width: 450px) {
+@media (max-width: 550px) {
     .imgSize{
         height: 100px;
         padding: .2em;

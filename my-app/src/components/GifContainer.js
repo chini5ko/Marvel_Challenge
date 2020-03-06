@@ -13,49 +13,96 @@ class GifContainer extends Component {
         };
     }
 
-    // AJAX call for trending 
     componentDidMount() {
         this.renderTrending();
     }
 
     renderImgElement(url_giphy_request, type) {
         var items = []
-        $.ajax({
-            type: "GET",
-            url: url_giphy_request,
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function (giphyJson) {
-                console.log("ajax! type: " + type)
-                var data = giphyJson['data'];
 
-                for (const d of data.entries()) {
-                    let index = d[0];
-                    let gifJson = d[1];
-                    let images = gifJson.images;
-                    let downsized = images['downsized'];
-                    let downsizedURL = downsized['url'];
+        // fetch JSON from Giphy
+        fetch(url_giphy_request)
+        .then((response) => {
+            return response.json();
+        })
+        .then((giphyJson) => {
 
-                   // items.push(<img key={index} src={downsizedURL} height='200px' alt='gif' ></img>)
-                   items.push(<EachGiftEl key={index} gifURL={downsizedURL}></EachGiftEl>)
-                }
+            var data = giphyJson['data'];
+                
+            for (const d of data.entries()) {
+                let index = d[0];
+                let gifJson = d[1];
+                let images = gifJson.images;
+                let downsized = images['downsized'];
+                let downsizedURL = downsized['url'];
 
-                if(type=='trending'){
-                    this.setState({ trendingGifs: items })
-                }
-                if(type=='search'){
-                    this.setState({ searchGifs: items })
-                }
-
-            }.bind(this),
-            error: function (request, status, error) {
-                console.log("Error");
-                console.log(request)
-                console.log(status)
-                console.log(error)
+               items.push(<EachGiftEl index={index} key={index} gifURL={downsizedURL}></EachGiftEl>)
             }
+
+
+            if(items.length==0){
+                items.push(<h6>No Gifs for this search: { this.props.searchValue} </h6>)
+            }
+            if(type=='trending'){
+                this.setState({ trendingGifs: items })
+            }
+            if(type=='search'){
+                this.setState({ searchGifs: items })
+            }
+
+        }).catch(function(){
+            items.push(<h6 >Failed Connection </h6>)
         });
-    
+
+               
+
+        // $.ajax({
+        //     type: "GET",
+        //     url: url_giphy_request,
+        //     dataType: "json",
+        //     contentType: "application/json; charset=utf-8",
+        //     success: function (giphyJson) {
+        //         console.log("ajax! type: " + type)
+        //         var data = giphyJson['data'];
+                
+        //         for (const d of data.entries()) {
+        //             let index = d[0];
+        //             let gifJson = d[1];
+        //             let images = gifJson.images;
+        //             let downsized = images['downsized'];
+        //             let downsizedURL = downsized['url'];
+
+        //            items.push(<EachGiftEl index={index} gifURL={downsizedURL}></EachGiftEl>)
+        //         }
+
+
+        //         if(items.length==0){
+        //             items.push(<h6>No Gifs for this search: { this.props.searchValue} </h6>)
+        //         }
+        //         if(type=='trending'){
+        //             this.setState({ trendingGifs: items })
+        //         }
+        //         if(type=='search'){
+        //             this.setState({ searchGifs: items })
+        //         }
+            
+        //     }.bind(this),
+        //     error: function (request, status, error) {
+        //         items.push(<h6>Failed Connection </h6>)
+              
+        //             this.setState({ trendingGifs: items,
+        //                 searchGifs: items
+        //              })
+                
+        //         console.log("Error");
+        //         console.log(request)
+        //         console.log(status)
+        //         console.log(error)
+
+        //     }.bind(this)
+        // });
+
+      
     }
 
     renderSearch(){

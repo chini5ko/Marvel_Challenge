@@ -38,7 +38,7 @@ class Container extends Component {
 
     displayEmptyWarning() {
         if (this.state.emptyWarningDisplayed && this.state.searchCurrentValue.length == 0) {
-            return <h6 className={style.warning}>Search field is empty. Default value for empty search is Marvel</h6>
+            return <h6 className={style.warning}>Search field is empty<br/> Default value for empty search is Marvel</h6>
         }
         else {
             return null;

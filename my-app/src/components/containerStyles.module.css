@@ -10,7 +10,7 @@
 .searchBarContainer{
     align-self: center;
     justify-self: center;
-     display: grid;
+    display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr .3fr;
 
@@ -52,21 +52,21 @@
 	box-shadow: 0 0 25px 0 #ed1d24, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
     z-index: 5;
 	font-weight: bolder;
-	letter-spacing: 0.3em;
+    letter-spacing: 0.3em;
+    font-size: 0.9em;
 }
 
-.searchICon{
+.searchIConContainer{
     grid-row: 1/2;
     grid-column: 2/3;
     align-self: center;
   
-    margin: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    padding-left: 0.01em;
-    width: 3.5em;
-    height: 3.5em;
-    cursor: pointer;
+  
+}
+
+h6{
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.6em;
+    text-align: center;
 }
 

@@ -8,6 +8,12 @@
     cursor: pointer;
 }
 
+@media (max-width: 650px) {
+    .icon{
+        width: 2.2em;
+        height: 2.2em;
+    }
+}
 
 @media (max-width: 550px) {
     .icon{
@@ -15,3 +21,4 @@
         height: 2.5em;
     }
 }
+

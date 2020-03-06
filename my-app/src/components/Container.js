@@ -10,7 +10,8 @@ class Container extends Component {
         this.state = {
             didUserSearch: false,
             searchCurrentValue: "",
-            emptyWarningDisplayed: false
+            emptyWarningDisplayed: false,
+            currentGitsDescription: "Trending GIFs"
         };
         this.gifContainerEl = React.createRef();
     }
@@ -30,19 +31,26 @@ class Container extends Component {
 
     performSearch = () => {
         this.gifContainerEl.current.renderSearch();
+        this.setState({currentGitsDescription: this.state.searchCurrentValue})
 
-        if (!this.state.didFirstSearchOcurred) {
-            this.setState({ emptyWarningDisplayed: true })
-        }
+        if(this.state.searchCurrentValue.length==0){
+            this.setState({emptyWarningDisplayed: true,
+                           currentGitsDescription: "Marvel"})
+             }
     }
 
     displayEmptyWarning() {
-        if (this.state.emptyWarningDisplayed && this.state.searchCurrentValue.length == 0) {
+        if (this.state.emptyWarningDisplayed) {
             return <h6 className={style.warning}>Search field is empty<br/> Default value for empty search is Marvel</h6>
         }
         else {
             return null;
         }
+    }
+
+    clickedHome = () =>{
+        this.gifContainerEl.current.renderTrending();
+        this.setState({currentGitsDescription: "Trending GIFs"})
     }
 
 
@@ -51,6 +59,7 @@ class Container extends Component {
             <div>
 
                 <div className={style.containerWrap}>
+                <div onClick={this.clickedHome} className={style.home}>Home</div>
                     <div className={style.searchBarContainer}>
 
                         <input type="text" placeholder="Search GIFs" onKeyUp={this.handleKeyPress} className={style.searchBar} autoFocus />
@@ -61,6 +70,7 @@ class Container extends Component {
 
                         <div className={style.warningContainer}>{this.displayEmptyWarning()}</div>
                     </div>
+                <div className={style.currentGifDes}> #{this.state.currentGitsDescription}</div>
 
                     <div className={style.gifDisplayContainer}>
                         <GifContainer ref={this.gifContainerEl} didUserSearch={this.state.didUserSearch} searchValue={this.state.searchCurrentValue} />

@@ -4,21 +4,49 @@
     height: 100vh;
 
     display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
     
 }
 
 .searchBarContainer{
+    grid-column: 2/3;
     align-self: center;
     justify-self: center;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr .2fr;
 
-    padding-top: 2em;
+    padding-top: 20pt;
     
 }
 
+.home{
+    grid-column: 1/2;
+    font-family: 'Inconsolata', monospace;
+    color: #ed1d24;
+    justify-self: center;
+    align-self: center;
+    padding-top: 20pt;
+    padding-right: 10pt;
+    padding-left: 5pt;
+    cursor: pointer;
+}
+
+.currentGifDes{
+    grid-column: 3/4;
+    font-family: 'Inconsolata', monospace;
+    color: #ed1d24;
+    justify-self: center;
+    align-self: center;
+    padding-top: 20pt;
+    padding-left: 10pt;
+    padding-right: 5pt;
+    cursor: pointer;
+}
+
+
 .gifDisplayContainer{
+    grid-column: 1/4;
     background: #000 ;
     overflow: auto;
     padding: 1em;
@@ -33,6 +61,7 @@
 }
 
 .warning{
+	font-family: 'Inconsolata', monospace;
     color: red;
 }
 
@@ -65,8 +94,8 @@
 .searchIConContainer{
     grid-row: 1/2;
     grid-column: 2/3;
-   justify-self: start;
-  padding-top: 2pt;
+    justify-self: start;
+    padding-top: 2pt;
 }
 
 h6{
@@ -77,9 +106,22 @@ h6{
     padding-top: 5pt;
 }
 
+@media (max-width: 650px) {
+    h6, .currentGifDes, .home{
+        font-size: 7pt;
+    }
+
+    .searchBar{
+        width: 14em;
+        height: 2.3em;
+        font-size: 10pt;
+    }
+    
+}
+
 
 @media (max-width: 550px) {
-    h6{
+    h6, .currentGifDes, .home{
         font-size: 7pt;
     }
 

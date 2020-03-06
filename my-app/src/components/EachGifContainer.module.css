@@ -9,16 +9,10 @@ h6{
 }
 
 .gifInteraction:hover{
-    box-shadow: 0 0 20px 0 #ed1d24, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 20px 0 #ed1d24, 0 2px 25px 0 rgba(51, 115, 179, 0.89);
+    height: 210px;
 }
 
-.unfocus{
-    filter: grayscale(100%);
-}
-
-.color{
-    filter: grayscale(100%);
-}
 
 .cursor{
     cursor: pointer;
@@ -27,6 +21,10 @@ h6{
     .imgSize{
         height: 180px;
     }
+    .gifInteraction:hover{
+        height: 185px;
+    }
+    
     
     
 }
@@ -35,13 +33,20 @@ h6{
     .imgSize{
         height: 150px;
     }
+    .gifInteraction:hover{
+        height: 155px;
+    }
     
 
 }
 
 @media (max-width: 550px) {
+    
     .imgSize{
         height: 100px;
-        padding: .2em;
+        margin: .2em;
+    }
+    .gifInteraction:hover{
+        height: 105px;
     }
 }

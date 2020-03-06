@@ -4,9 +4,8 @@ import style from './EachGifContainer.module.css'
 class EachGifContainer extends Component {
     render() {
         return (
-            <div>
-                
-            </div>
+                <img src={this.props.gifURL} key={this.props.downsizedURL} alt='gif' 
+                className={`${style.imgSize} ${style.cursor}  ${style.gifInteraction}`}  ></img>
         )
     }
 }

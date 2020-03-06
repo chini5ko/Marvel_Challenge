@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
 import style from './gifContainerStyle.module.css'
+import EachGiftEl from './EachGifContainer'
 
 class GifContainer extends Component {
     constructor(props) {
-
-        //hardcoded 
         super(props);
         this.state = {
             trendingGifs: null,
@@ -37,7 +36,8 @@ class GifContainer extends Component {
                     let downsized = images['downsized'];
                     let downsizedURL = downsized['url'];
 
-                    items.push(<img key={index} src={downsizedURL} height='200px' alt='gif' ></img>)
+                   // items.push(<img key={index} src={downsizedURL} height='200px' alt='gif' ></img>)
+                   items.push(<EachGiftEl key={index} gifURL={downsizedURL}></EachGiftEl>)
                 }
 
                 if(type=='trending'){

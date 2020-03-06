@@ -59,7 +59,7 @@ class Container extends Component {
                             <MarvelSearchIcon />
                         </div>
 
-                        <div>{this.displayEmptyWarning()}</div>
+                        <div className={style.warningContainer}>{this.displayEmptyWarning()}</div>
                     </div>
 
                     <div className={style.gifDisplayContainer}>

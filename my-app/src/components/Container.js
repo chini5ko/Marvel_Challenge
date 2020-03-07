@@ -33,7 +33,7 @@ class Container extends Component {
         this.gifContainerEl.current.renderSearch();
         this.setState({currentGitsDescription: this.state.searchCurrentValue})
 
-        if(this.state.searchCurrentValue.length==0){
+        if(this.state.searchCurrentValue.length===0){
             this.setState({emptyWarningDisplayed: true,
                            currentGitsDescription: "Marvel"})
              }

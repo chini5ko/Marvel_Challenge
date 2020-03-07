@@ -9,8 +9,8 @@ class EachGifContainer extends Component {
 
     render() {
         return (
-                <img src={this.props.gifURL} key={this.props.index} alt='gif' type={this.props.type}
-                onClick={() => this.openNewTabForGif(this.props.gifURL)} 
+                <img src={this.props.gifURL} key={this.props.index} alt={this.props.title} type={this.props.type}
+                onClick={() => this.openNewTabForGif(this.props.gifEmbed_url)}  
                 className={`${style.imgSize} ${style.cursor}  ${style.gifInteraction}`}  ></img>
         )
     }

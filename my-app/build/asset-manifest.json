@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/marvelChallenge/static/css/main.01d9ebe8.chunk.css",
+    "main.js": "/marvelChallenge/static/js/main.01dc1971.chunk.js",
+    "main.js.map": "/marvelChallenge/static/js/main.01dc1971.chunk.js.map",
+    "runtime-main.js": "/marvelChallenge/static/js/runtime-main.ff911f3e.js",
+    "runtime-main.js.map": "/marvelChallenge/static/js/runtime-main.ff911f3e.js.map",
+    "static/js/2.90c15f6e.chunk.js": "/marvelChallenge/static/js/2.90c15f6e.chunk.js",
+    "static/js/2.90c15f6e.chunk.js.map": "/marvelChallenge/static/js/2.90c15f6e.chunk.js.map",
+    "index.html": "/marvelChallenge/index.html",
+    "precache-manifest.70b07f7aaa9134ef5829502fb9b80177.js": "/marvelChallenge/precache-manifest.70b07f7aaa9134ef5829502fb9b80177.js",
+    "service-worker.js": "/marvelChallenge/service-worker.js",
+    "static/css/main.01d9ebe8.chunk.css.map": "/marvelChallenge/static/css/main.01d9ebe8.chunk.css.map",
+    "static/js/2.90c15f6e.chunk.js.LICENSE.txt": "/marvelChallenge/static/js/2.90c15f6e.chunk.js.LICENSE.txt",
+    "static/media/marvelSearchIcon.svg": "/marvelChallenge/static/media/marvelSearchIcon.e5e0f05a.svg",
+    "static/media/marvelSearchIconHover.svg": "/marvelChallenge/static/media/marvelSearchIconHover.b8caa593.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ff911f3e.js",
+    "static/js/2.90c15f6e.chunk.js",
+    "static/css/main.01d9ebe8.chunk.css",
+    "static/js/main.01dc1971.chunk.js"
+  ]
+}

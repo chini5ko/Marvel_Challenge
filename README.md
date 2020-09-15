@@ -1,6 +1,9 @@
 # Marvel_Challenge
 Front End developer Coding Challenge using GIPHY
 
+## Live web application URL
+https://chinisko.s3.us-east-2.amazonaws.com/index.html 
+
 # Instructions 
 1.  git clone https://github.com/chini5ko/Marvel_Challenge.git
 2.  cd my-app
